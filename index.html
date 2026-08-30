@@ -131,22 +131,9 @@
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Photo Gallery Styling for 4 Photos */
+        /* Single Photo Styling */
         .photo-gallery-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
             margin: 20px 0;
-            max-height: 380px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-        .photo-gallery-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .photo-gallery-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 117, 140, 0.3);
-            border-radius: 10px;
         }
         .photo-card-item {
             background: rgba(0, 0, 0, 0.35);
@@ -156,7 +143,7 @@
         }
         .photo-frame {
             width: 100%;
-            height: 200px;
+            height: 250px;
             border-radius: 14px;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.05);
@@ -170,12 +157,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        .photo-placeholder-text {
-            color: #ff7eb3;
-            font-size: 0.9rem;
-            padding: 10px;
-            text-align: center;
         }
         .photo-caption {
             margin-top: 10px;
@@ -265,7 +246,6 @@
 </head>
 <body>
 
-    <!-- Dynamic Animated Background Particles -->
     <ul class="bg-particles">
         <li class="particle"></li>
         <li class="particle"></li>
@@ -276,7 +256,6 @@
     </ul>
 
     <div class="container">
-        <!-- Section 0: Biometric Scanner Intro -->
         <div class="card" id="intro-card">
             <div class="scanner-pad" onclick="unlockSecret()" title="Click to scan fingerprint">
                 <div class="scanner-glow"></div>
@@ -287,7 +266,6 @@
             <button class="btn" onclick="unlockSecret()">Scan & Unlock ✨</button>
         </div>
 
-        <!-- Section 1: Main Birthday Wish Reveal -->
         <div class="card hidden" id="birthday-card">
             <h1>Happy Birthday, Neha! <span class="heart">❤</span></h1>
             <p style="color: #ffeb3b; font-weight: 600; margin-top: -10px; margin-bottom: 15px;">( Official VIP Kaleshi Person )</p>
@@ -295,64 +273,25 @@
             <p>You have this magical way of driving me crazy and making me smile at the exact same second. Dealing with your endless demands and cute tantrums is somehow my favorite full-time job.</p>
             <p class="highlight-text">"People look for peace in life, but honestly? Matching your vibe and surviving your daily dramas is the real adventure. Never change!"</p>
             <p style="font-size: 0.95rem; color: #a8ff78; margin-top: 10px;">— Secretly yours, Fahu (Fahim)</p>
-            <button class="btn" onclick="showPhotosSection()">View Memory Lane <span class="heart">📸</span></button>
+            <button class="btn" onclick="showPhotosSection()">View Special Photo <span class="heart">📸</span></button>
         </div>
 
-        <!-- Section 2: 4 Photos Gallery Section -->
         <div class="card hidden" id="photos-card">
-            <h1>Special Moments <span class="heart">✨</span></h1>
-            <p>A few snapshots of my favorite troublemaker!</p>
+            <h1>Special Moment <span class="heart">✨</span></h1>
+            <p>The masterpiece of my favorite troublemaker!</p>
             
             <div class="photo-gallery-container">
-                <!-- Photo 1 -->
                 <div class="photo-card-item">
                     <div class="photo-frame">
-                        <img src="" alt="Photo 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="photo-placeholder-text" style="display:none;">
-                            📷<a href="https://ibb.co.com/5hkgqh38"><img src="https://i.ibb.co.com/chwSzh9F/photo1-jpg.jpg" alt="photo1-jpg" border="0"></a>
-                        </div>
+                        <img src="<a href="https://ibb.co.com/5hkgqh38"><img src="https://i.ibb.co.com/chwSzh9F/photo1-jpg.jpg" alt="photo1-jpg" border="0"></a>" alt="Special Photo">
                     </div>
                     <p class="photo-caption">"When you are looking extra cute (and plotting next drama) 😌"</p>
-                </div>
-
-                <!-- Photo 2 -->
-                <div class="photo-card-item">
-                    <div class="photo-frame">
-                        <img src="" alt="Photo 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="photo-placeholder-text" style="display:none;">
-                            📷 এখানে ছবি ২ এর লিংক বা নাম দাও
-                        </div>
-                    </div>
-                    <p class="photo-caption">"My absolute favorite distraction ❤️"</p>
-                </div>
-
-                <!-- Photo 3 -->
-                <div class="photo-card-item">
-                    <div class="photo-frame">
-                        <img src="" alt="Photo 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="photo-placeholder-text" style="display:none;">
-                            📷 এখানে ছবি ৩ এর লিংক বা নাম দাও
-                        </div>
-                    </div>
-                    <p class="photo-caption">"Proof that life with you is never boring ✨"</p>
-                </div>
-
-                <!-- Photo 4 -->
-                <div class="photo-card-item">
-                    <div class="photo-frame">
-                        <img src="" alt="Photo 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="photo-placeholder-text" style="display:none;">
-                            📷 এখানে ছবি ৪ এর লিংক বা নাম দাও
-                        </div>
-                    </div>
-                    <p class="photo-caption">"Forever partner in crime & tantrums 💖"</p>
                 </div>
             </div>
 
             <button class="btn" onclick="showQuizSection()">Take the Quiz ➔</button>
         </div>
 
-        <!-- Section 3: Fun Quiz Section -->
         <div class="card hidden" id="question-card">
             <h1>Let's Test Your Mind Reader Skills <span class="heart">🎯</span></h1>
             <p id="q-text">Let’s see how well you know your own effect on me!</p>
@@ -365,7 +304,6 @@
             <button class="btn hidden" id="next-q-btn" onclick="nextQuestion()" style="margin-top: 20px;">Next Level ➔</button>
         </div>
 
-        <!-- Section 4: Final Note -->
         <div class="card hidden" id="final-card">
             <h1>Mission Accomplished! <span class="heart">🌟</span></h1>
             <p>You survived the surprise! But jokes apart, having you around is the best thing ever. You make every ordinary day feel cinematic.</p>
