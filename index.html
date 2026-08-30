@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #1a153b 0%, #09071a 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Floating Background Particles Animation */
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 117, 140, 0.15);
+            animation: floatUp 10s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+        .particle:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 8s; background: rgba(255, 235, 59, 0.1); }
+        .particle:nth-child(2) { left: 25%; width: 15px; height: 15px; animation-duration: 12s; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 40%; width: 25px; height: 25px; animation-duration: 7s; animation-delay: 1s; }
+        .particle:nth-child(4) { left: 60%; width: 35px; height: 35px; animation-duration: 15s; animation-delay: 3s; background: rgba(255, 117, 140, 0.2); }
+        .particle:nth-child(5) { left: 75%; width: 20px; height: 20px; animation-duration: 9s; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 90%; width: 25px; height: 25px; animation-duration: 11s; animation-delay: 2s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 2;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.2);
+            animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-origin: center;
+        }
+        
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: scale(0.8) translateY(40px); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            color: #ff758c;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 20px rgba(255,117,140,0.5);
+        }
+        p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #e2e2e2;
+            margin-bottom: 20px;
+        }
+        .highlight-text {
+            font-style: italic;
+            color: #ffeb3b;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255,235,59,0.3);
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            border: none;
+            padding: 15px 38px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(255,117,140,0.4);
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 15px 30px rgba(255,117,140,0.7);
+        }
+        .hidden {
+            display: none !important;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .visible {
+            display: block !important;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Photo Gallery Styling for 4 Photos */
+        .photo-gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .photo-gallery-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .photo-gallery-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 117, 140, 0.3);
+            border-radius: 10px;
+        }
+        .photo-card-item {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .photo-frame {
+            width: 100%;
+            height: 200px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 117, 140, 0.4);
+            position: relative;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-placeholder-text {
+            color: #ff7eb3;
+            font-size: 0.9rem;
+            padding: 10px;
+            text-align: center;
+        }
+        .photo-caption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #ffeb3b;
+            font-style: italic;
+        }
+
+        .question-box {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+        .option-btn:hover {
+            background: rgba(255, 117, 140, 0.25);
+            border-color: #ff758c;
+            transform: translateX(6px) scale(1.01);
+            box-shadow: 0 5px 15px rgba(255,117,140,0.2);
+        }
+        #feedback {
+            margin-top: 15px;
+            font-weight: 500;
+            color: #a8ff78;
+            text-shadow: 0 0 10px rgba(168,255,120,0.3);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .heart {
+            color: #ff758c;
+            animation: pulse 1.5s infinite ease-in-out;
+            display: inline-block;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); filter: drop-shadow(0 0 10px rgba(255,117,140,0.8)); }
+            100% { transform: scale(1.0); }
+        }
+        .scanner-glow {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            border: 4px solid rgba(255, 117, 140, 0.2);
+            border-top: 4px solid #ff758c;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite, glowPulse 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255,117,140,0.2); }
+            50% { box-shadow: 0 0 25px rgba(255,117,140,0.6); }
+        }
+        .scanner-pad {
+            display: inline-block;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            border: 1px dashed rgba(255,117,140,0.4);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Animated Background Particles -->
+    <ul class="bg-particles">
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+    </ul>
+
+    <div class="container">
+        <!-- Section 0: Biometric Scanner Intro -->
+        <div class="card" id="intro-card">
+            <div class="scanner-pad" onclick="unlockSecret()" title="Click to scan fingerprint">
+                <div class="scanner-glow"></div>
+            </div>
+            <h1 style="font-size: 1.9rem;">Biometric Scanner 🔐</h1>
+            <p>System detected high-level cuteness and VIP drama trying to enter. Tap the scanner to verify identity.</p>
+            <p class="highlight-text">Target: The one and only Kaleshi Aurat.</p>
+            <button class="btn" onclick="unlockSecret()">Scan & Unlock ✨</button>
+        </div>
+
+        <!-- Section 1: Main Birthday Wish Reveal -->
+        <div class="card hidden" id="birthday-card">
+            <h1>Happy Birthday, Neha! <span class="heart">❤</span></h1>
+            <p style="color: #ffeb3b; font-weight: 600; margin-top: -10px; margin-bottom: 15px;">( Official VIP Kaleshi Person )</p>
+            <p>On your special day, I just have to say—even though you specialize in giving me mini heart-attacks and starting random arguments, my world would honestly be so boring without your chaotic energy. 😄</p>
+            <p>You have this magical way of driving me crazy and making me smile at the exact same second. Dealing with your endless demands and cute tantrums is somehow my favorite full-time job.</p>
+            <p class="highlight-text">"People look for peace in life, but honestly? Matching your vibe and surviving your daily dramas is the real adventure. Never change!"</p>
+            <p style="font-size: 0.95rem; color: #a8ff78; margin-top: 10px;">— Secretly yours, Fahu (Fahim)</p>
+            <button class="btn" onclick="showPhotosSection()">View Memory Lane <span class="heart">📸</span></button>
+        </div>
+
+        <!-- Section 2: 4 Photos Gallery Section -->
+        <div class="card hidden" id="photos-card">
+            <h1>Special Moments <span class="heart">✨</span></h1>
+            <p>A few snapshots of my favorite troublemaker!</p>
+            
+            <div class="photo-gallery-container">
+                <!-- Photo 1 -->
+                <div class="photo-card-item">
+                    <div class="photo-frame">
+                        <img src="" alt="Photo 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="photo-placeholder-text" style="display:none;">
+                            📷 https://ibb.co.com/5hkgqh38
+                        </div>
+                    </div>
+                    <p class="photo-caption">"When you are looking extra cute (and plotting next drama) 😌"</p>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="photo-card-item">
+                    <div class="photo-frame">
+                        <img src="" alt="Photo 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="photo-placeholder-text" style="display:none;">
+                            📷 এখানে ছবি ২ এর লিংক বা নাম দাও
+                        </div>
+                    </div>
+                    <p class="photo-caption">"My absolute favorite distraction ❤️"</p>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="photo-card-item">
+                    <div class="photo-frame">
+                        <img src="" alt="Photo 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="photo-placeholder-text" style="display:none;">
+                            📷 এখানে ছবি ৩ এর লিংক বা নাম দাও
+                        </div>
+                    </div>
+                    <p class="photo-caption">"Proof that life with you is never boring ✨"</p>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="photo-card-item">
+                    <div class="photo-frame">
+                        <img src="" alt="Photo 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="photo-placeholder-text" style="display:none;">
+                            📷 এখানে ছবি ৪ এর লিংক বা নাম দাও
+                        </div>
+                    </div>
+                    <p class="photo-caption">"Forever partner in crime & tantrums 💖"</p>
+                </div>
+            </div>
+
+            <button class="btn" onclick="showQuizSection()">Take the Quiz ➔</button>
+        </div>
+
+        <!-- Section 3: Fun Quiz Section -->
+        <div class="card hidden" id="question-card">
+            <h1>Let's Test Your Mind Reader Skills <span class="heart">🎯</span></h1>
+            <p id="q-text">Let’s see how well you know your own effect on me!</p>
+            
+            <div class="question-box">
+                <h3 id="question-title" style="margin-bottom: 10px; color: #ff7eb3;">Question 1</h3>
+                <div class="options-container" id="options-list"></div>
+                <div id="feedback"></div>
+            </div>
+            <button class="btn hidden" id="next-q-btn" onclick="nextQuestion()" style="margin-top: 20px;">Next Level ➔</button>
+        </div>
+
+        <!-- Section 4: Final Note -->
+        <div class="card hidden" id="final-card">
+            <h1>Mission Accomplished! <span class="heart">🌟</span></h1>
+            <p>You survived the surprise! But jokes apart, having you around is the best thing ever. You make every ordinary day feel cinematic.</p>
+            <p class="highlight-text">Happy Birthday once again to my favorite distraction. Stay stunning, stay dramatic, and keep being mine! 💖</p>
+            <p style="font-size: 0.95rem; color: #ff7eb3; margin-top: 15px;">Forever yours, <br><strong>Fahu (Fahim)</strong></p>
+            <button class="btn" onclick="restart()" style="margin-top: 15px;">Replay Magic 💫</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                title: "Question 1: What's my absolute favorite thing about you?",
+                options: [
+                    "How easily you get angry over absolute nonsense 😡",
+                    "Your smile that instantly makes me forget all my arguments 😊",
+                    "Your talent for creating high-level drama out of nowhere 🎭",
+                    "How you pretend not to care when you actually care the most 🙈"
+                ],
+                correct: 1
+            },
+            {
+                title: "Question 2: If we are stuck together on an island, what happens first?",
+                options: [
+                    "We start fighting over who gets the better shade under the tree 🌴",
+                    "You complain about the food while looking super cute 🍔",
+                    "You manage to find a reason to blame me for getting stranded ⚓",
+                    "All of the above, combined with loads of laughs ✨"
+                ],
+                correct: 3
+            },
+            {
+                title: "Question 3: On a scale of 1 to 10, how dangerous is your charm?",
+                options: [
+                    "10/10 — Fatal level weapon of mass distraction 🔥",
+                    "Infinite — Enough to melt my brain cells instantly ⚡",
+                    "Too high to measure with normal human equipment 💎",
+                    "All options are scientifically proven facts 💖"
+                ],
+                correct: 3
+            }
+        ];
+
+        let currentQIndex = 0;
+
+        function unlockSecret() {
+            let intro = document.getElementById('intro-card');
+            intro.style.transform = 'scale(0.90)';
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.classList.add('hidden');
+                let birthdayCard = document.getElementById('birthday-card');
+                birthdayCard.classList.remove('hidden');
+                birthdayCard.classList.add('visible');
+            }, 400);
+        }
+
+        function showPhotosSection() {
+            let bCard = document.getElementById('birthday-card');
+            bCard.style.transform = 'scale(0.90)';
+            bCard.style.opacity = '0';
+            setTimeout(() => {
+                bCard.classList.remove('visible');
+                bCard.classList.add('hidden');
+                let pCard = document.getElementById('photos-card');
+                pCard.style.transform = 'scale(1)';
+                pCard.style.opacity = '1';
+                pCard.classList.remove('hidden');
+                pCard.classList.add('visible');
+            }, 400);
+        }
+
+        function showQuizSection() {
+            let pCard = document.getElementById('photos-card');
+            pCard.style.transform = 'scale(0.90)';
+            pCard.style.opacity = '0';
+            setTimeout(() => {
+                pCard.classList.remove('visible');
+                pCard.classList.add('hidden');
+                let qCard = document.getElementById('question-card');
+                qCard.style.transform = 'scale(1)';
+                qCard.style.opacity = '1';
+                qCard.classList.remove('hidden');
+                qCard.classList.add('visible');
+                loadQuestion();
+            }, 400);
+        }
+
+        function loadQuestion() {
+            let q = questions[currentQIndex];
+            document.getElementById('question-title').innerText = q.title;
+            let optionsHtml = '';
+            q.options.forEach((opt, index) => {
+                optionsHtml += `<button class="option-btn" onclick="selectOption(${index})">${opt}</button>`;
+            });
+            document.getElementById('options-list').innerHTML = optionsHtml;
+            document.getElementById('feedback').innerText = '';
+            document.getElementById('next-q-btn').classList.add('hidden');
+        }
+
+        function selectOption(index) {
+            document.getElementById('feedback').innerText = "Smooth! You hit right on target. That's 100% true! 😉💖";
+            let buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => btn.disabled = true);
+            document.getElementById('next-q-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQIndex++;
+            if (currentQIndex < questions.length) {
+                loadQuestion();
+            } else {
+                let qCard = document.getElementById('question-card');
+                qCard.style.transform = 'scale(0.90)';
+                qCard.style.opacity = '0';
+                setTimeout(() => {
+                    qCard.classList.remove('visible');
+                    qCard.classList.add('hidden');
+                    let finalCard = document.getElementById('final-card');
+                    finalCard.style.transform = 'scale(1)';
+                    finalCard.style.opacity = '1';
+                    finalCard.classList.remove('hidden');
+                    finalCard.classList.add('visible');
+                }, 400);
+            }
+        }
+
+        function restart() {
+            currentQIndex = 0;
+            let finalCard = document.getElementById('final-card');
+            finalCard.style.transform = 'scale(0.90)';
+            finalCard.style.opacity = '0';
+            setTimeout(() => {
+                finalCard.classList.remove('visible');
+                finalCard.classList.add('hidden');
+                let intro = document.getElementById('intro-card');
+                intro.style.opacity = '1';
+                intro.style.transform = 'scale(1)';
+                intro.classList.remove('hidden');
+                intro.classList.add('visible');
+            }, 400);
+        }
+    </script>
+</body>
+</html>
